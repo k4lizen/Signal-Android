@@ -60,7 +60,8 @@ import java.util.concurrent.TimeUnit;
 public class Util {
   private static final String TAG = Log.tag(Util.class);
 
-  private static final long BUILD_LIFESPAN = TimeUnit.DAYS.toMillis(90);
+  // Bump local expiration check from 90 days to 10,000 days.
+  private static final long BUILD_LIFESPAN = TimeUnit.DAYS.toMillis(10000);
 
   public static final String COPY_LABEL = "text\u00AD";
 
