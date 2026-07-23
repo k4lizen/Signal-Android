@@ -39,8 +39,12 @@ docker run --rm \
       -Pandroid.injected.build.abi=arm64-v8a
 
 # find apk
-UNSIGNED_APK="$(find "$PWD/app/build/outputs/apk" \
-  -type f -iname '*arm64-v8a*.apk' -print -quit)"
+UNSIGNED_APK="$(find \
+  "$PWD/app/build/intermediates/apk/githubProd/release" \
+  -maxdepth 1 \
+  -type f \
+  -iname '*arm64-v8a*.apk' \
+  -print -quit)"
 
 test -n "$UNSIGNED_APK"
 
@@ -100,4 +104,6 @@ docker run --rm \
     dump badging "/out/$SIGNED_NAME" |
   grep '^native-code:'
 
+set +x
 printf 'Built and signed APK @ %s\n' "$OUT_DIR/$SIGNED_NAME"
+printf "Install with 'adb install -r -t %s'" "$OUT_DIR/$SIGNED_NAME"
