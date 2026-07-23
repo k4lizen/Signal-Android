@@ -34,7 +34,9 @@ docker run --rm \
     -w /project \
     --user "$(id -u):$(id -g)" \
     signal-build-env \
-    ./gradlew clean assembleGithubProdRelease
+    ./gradlew clean assembleGithubProdRelease \
+      -Pandroid.buildOnlyTargetAbi=true \
+      -Pandroid.injected.build.abi=arm64-v8a
 
 # find apk
 UNSIGNED_APK="$(find "$PWD/app/build/outputs/apk" \
