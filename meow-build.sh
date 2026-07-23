@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -euxo pipefail
+
 # build the reproducible builds docker
 docker build -t signal-build-env reproducible-builds
 
